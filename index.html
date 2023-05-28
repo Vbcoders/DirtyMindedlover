@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dirty minded waifu</title>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=wkytaqlx"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+  <center>
+    <div id="container">
+    <div id="head">
+    <b id="activity">Activity...</b>
+    <br>
+  <img src="IMG_20230528_104609_014.jpg" alt="waifu.jpg" >
+  <br>
+  <b id="name">Waifu</b> 
+  <br>
+  <b id="recive">Messages Received<br><small id="sen"></small></b>
+  <b id="sent">Messages sent<br><small id="rec"></small></b>
+  <hr>
+  </div>
+  <div id="chat">
+ <p></p>
+ </div>
+ <input type="text" id="input" placeholder="your message">
+  <button onclick="start()">Send</button>
+  </div>
+ </center>
+ <style>
+  #chat{
+    overflow-y: auto;
+    
+  }
+  #close{
+    color: white;
+    background-color: lightgreen;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+  }
+  #close:hover{
+    cursor: pointer;
+  }
+  #popup{
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    background-color: royalblue;
+    color: white;
+   width: 50%;
+   margin-top: 20%;
+   border-radius: 30px;
+   box-shadow: 2px 2px 12px black;
+  
+  }
+  input{
+    width: 50%;
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+  }
+  #name{
+    color: grey;
+    font-size: 20px;
+  }
+  #sent,#recive{
+    font-size: 15px;
+    color: grey;
+    display: inline-block;
+    display: absolute;
+    margin: 20px;
+  }
+hr{
+  width: 90%;
+}
+  div{
+    width: 100%;
+    
+  }
+  .responseDiv{
+        margin-right: 50%;
+        background-color: whitesmoke;
+        color: black;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 50%;
+        text-align: left;
+  }
+    .userDiv{
+       margin-left: 50%;
+        background-color: royalblue;
+        color: white;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 25%;
+        text-align: left;
+    }
+ #activity{
+   font-size: 20px;
+   opacity: 40%;
+ }
+ p{
+   font-size: 30px;
+ }
+   body{
+     box-sizing: border-box;
+    width: 100%;
+     background-color: white;
+     color:black;
+     
+   }
+   img{
+     width: 250px;
+     margin-top:5%;
+     border-radius: 20px;
+   }
+   input,button{
+    display: inline;
+    padding: 10px;
+    margin: 0px;
+   }
+   button{
+
+   }
+
+ </style>
+ <script>
+  var s = 0;
+  var r =0;
+ async function start(){
+    var input = document.getElementById('input');
+     var activity = document.getElementById('activity');
+  var img =document.querySelector('img');
+  img.style.boxShadow='2px 2px 30px deeppink';
+  img.style.transition='0.5s';
+  activity.innerHTML='Listening...';
+  var res =document.querySelector('p');
+    var div = document.createElement('div');
+    div.classList.add('userDiv');
+    res.appendChild(div);
+    div.innerHTML='You : '+input.value;
+    var sent = document.getElementById('sen');
+    var recive = document.getElementById('rec');
+    s++;
+    recive.innerHTML=s;
+  const settings = {
+	async: true,
+	crossDomain: true,
+	url: 'https://waifu.p.rapidapi.com/path?user_id=Vikas&message='+input.value+'&from_name=Boy&to_name=Girl&situation=Girl%20loves%20Boy.&translate_from=auto&translate_to=auto',
+	method: 'POST',
+	headers: {
+		'content-type': 'application/json',
+		'X-RapidAPI-Key': '9e24df1a26msh45ac38f5e0aac11p15db4ejsn62f9d10e7260',
+		'X-RapidAPI-Host': 'waifu.p.rapidapi.com'
+	},
+	processData: false,
+	data: '{}'
+};
+$.ajax(settings).done(function (response) {
+	console.log(response);
+    var res =document.querySelector('p');
+    var div = document.createElement('div');
+    div.classList.add('responseDiv');
+    res.appendChild(div);
+    div.innerHTML='Waifu : '+response;
+    activity.innerHTML='Responded';
+    img.style.boxShadow='2px 2px 30px green';
+  img.style.transition='0.5s';
+  r++;
+  sent.innerHTML=r;
+  input.value="";
+  input.focus();
+});
+}
+ </script>
+</body>
+</html>
